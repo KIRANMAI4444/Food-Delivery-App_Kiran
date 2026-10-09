@@ -94,3 +94,10 @@ export const login = async (req, res) => {
         res.status(500).json({message: 'Server Error', error: err.message});
     }
 };
+
+// @desc Get current Logged-in user
+// @route GET /api/auth/me
+// @access Private
+export const getMe = async (req, res) => {
+    res.json({ user: req.user});
+};
