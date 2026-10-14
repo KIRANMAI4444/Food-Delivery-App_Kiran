@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDb } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
+import restaurantRoutes from './routes/restaurant.routes.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/restaurants', restaurantRoutes);
 
 //Health Check route
 app.get('/', (req, res) => {
