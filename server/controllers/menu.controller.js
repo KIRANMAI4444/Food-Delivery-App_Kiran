@@ -122,3 +122,19 @@ export const deleteMenuItem = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
+// @desc    Get a restaurant's menu
+// @route   GET /api/restaurants/:restaurantId/menu
+// @access  Public
+export const getMenu = async (req, res) => {
+  try {
+    const menu = await Menu.findOne({ restaurant: req.params.restaurantId });
+    if (!menu) {
+      return res.status(404).json({ message: 'Menu not found' });
+    }
+    res.json({ menu });
+  } catch (err) {
+    console.error('Get menu error:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
