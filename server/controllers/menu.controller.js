@@ -50,3 +50,42 @@ export const addMenuItem = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
+
+// @desc    Update a menu item
+// @route   PUT /api/restaurants/:restaurantId/menu/items/:itemId
+// @access  Private (restaurant owner)
+export const updateMenuItem = async (req, res) => {
+  try {
+    const { restaurantId, itemId } = req.params;
+
+    const check = await verifyOwnership(restaurantId, req.user._id);
+    if (check.error) {
+      return res.status(check.status).json({ message: check.error });
+    }
+
+    const menu = await Menu.findOne({ restaurant: restaurantId });
+    if (!menu) {
+      return res.status(404).json({ message: 'Menu not found' });
+    }
+
+    const item = menu.items.id(itemId);
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    // Update allowed fields
+    const updatable = ['name', 'description', 'price', 'category', 'image', 'isVeg', 'isAvailable'];
+    updatable.forEach((field) => {
+      if (req.body[field] !== undefined) {
+        item[field] = req.body[field];
+      }
+    });
+
+    await menu.save();
+
+    res.json({ item, menu });
+  } catch (err) {
+    console.error('Update menu item error:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
