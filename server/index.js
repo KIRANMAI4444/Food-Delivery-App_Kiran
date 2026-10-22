@@ -5,6 +5,8 @@ import { connectDb } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
 import restaurantRoutes from './routes/restaurant.routes.js';
 import menuRoutes from './routes/menu.routes.js';
+import cartRoutes from './routes/cart.routes.js';
+
 
 dotenv.config();
 
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/restaurants/:restaurantId/menu', menuRoutes);
+app.use('/api/cart', cartRoutes);
 
 //Health Check route
 app.get('/', (req, res) => {
