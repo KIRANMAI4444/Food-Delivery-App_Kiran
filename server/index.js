@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.routes.js';
 import restaurantRoutes from './routes/restaurant.routes.js';
 import menuRoutes from './routes/menu.routes.js';
 import cartRoutes from './routes/cart.routes.js';
+import orderRoutes from './routes/order.routes.js';
 
 
 dotenv.config();
