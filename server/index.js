@@ -22,6 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/restaurants/:restaurantId/menu', menuRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 
 //Health Check route
 app.get('/', (req, res) => {
