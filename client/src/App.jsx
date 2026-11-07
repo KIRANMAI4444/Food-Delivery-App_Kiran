@@ -1,12 +1,30 @@
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+
 function App() {
-  return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-xl text-center">
-        <h1 className="text-3xl font-bold text-slate-800">Food Delivery App</h1>
-        <p className="text-slate-600 mt-2">Tailwind is working!</p>
-      </div>
-    </div>
-  );
+ return (
+    <div className="min-h-screen bg-gray-50">
+
+      {/* Simple Navigation Bar */}
+      <nav className="bg-white shadow-sm p-4 flex gap-4">
+        <Link to="/" className="font-bold text-orange-500 text-xl">FoodApp</Link>
+        <div className="ml-auto flex gap-4">
+          <Link to="/" className="text-gray-700 hover:text-orange-500">Home</Link>
+          <Link to="/login" className="text-gray-700 hover:text-orange-500">Login</Link>
+        </div>
+      </nav>
+
+      {/* Page Content */}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </main>
+
+    </div>    
+ );
 }
 
 export default App;
