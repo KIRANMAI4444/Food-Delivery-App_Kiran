@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://probable-computing-machine-6v4r7pgrwq6f5w94-5000.app.github.dev/api',
+  baseURL: '/api', //  It will now hit Port 5173, and Vite forwards it to 5000
 });
 
 // Automatically attach the token to every request if it exists

@@ -19,7 +19,8 @@ function App() {
               <span className="text-gray-800 font-medium">Hi, {user.name}</span>
               <button
                 onClick = {logout}
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                style={{ backgroundColor: '#ef4444', color: 'white', padding: '6px 12px', borderRadius: '4px', border: 'none', 
+                  cursor: 'pointer',fontWeight: 'bold' }}
               > Logout
               </button>
             </>
