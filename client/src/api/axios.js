@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://probable-computing-machine-6v4r7pgrwq6f5w94-5000.app.github.dev/api',
 });
 
 // Automatically attach the token to every request if it exists
