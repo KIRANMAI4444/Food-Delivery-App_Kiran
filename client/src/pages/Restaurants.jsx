@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../api/axios';
+import { Link } from 'react-router-dom';
 
 const Restaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -18,7 +19,7 @@ const Restaurants = () => {
             setLoading(false);
             }
         };
-        fetchRestaurants();dx       
+        fetchRestaurants();      
     }, []);
 
     if (loading) 
@@ -34,22 +35,24 @@ const Restaurants = () => {
             (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {restaurants.map((restaurant) => (
-                    <div key={restaurant._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img 
-                            src={restaurant.image} 
-                            alt={restaurant.name} 
-                            className="w-full h-48 object-cover"
-                        />
+                    <Link to={`/restaurants/${restaurant._id}`} key={restaurant._id} className="block">
+                        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                            <img 
+                                src={restaurant.image} 
+                                alt={restaurant.name} 
+                                className="w-full h-48 object-cover"
+                            />
 
-                        <div className="p-4">
-                            <h2 className="text-xl font-bold">{restaurant.name}</h2>
-                            <p className="text-gray-600 text-sm mt-1">{restaurant.cuisine.join(', ')}</p>
-                            <div className="flex justify-between items-center mt-4">
-                                <span className="font-semibold text-green-600">₹{restaurant.deliveryFee} Delivery</span>
-                                <span className="text-sm text-gray-500">{restaurant.deliveryTime} mins</span>
+                            <div className="p-4">
+                                <h2 className="text-xl font-bold">{restaurant.name}</h2>
+                                <p className="text-gray-600 text-sm mt-1">{restaurant.cuisine.join(', ')}</p>
+                                <div className="flex justify-between items-center mt-4">
+                                    <span className="font-semibold text-green-600">₹{restaurant.deliveryFee} Delivery</span>
+                                    <span className="text-sm text-gray-500">{restaurant.deliveryTime} mins</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
             )}
