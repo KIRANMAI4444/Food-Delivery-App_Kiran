@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import { useAuth } from './context/AuthContext';
 import Restaurants from './pages/Restaurants';
+import RestaurantDetail from './pages/RestaurantDetail';
 
 function App() {
   const { user, logout } = useAuth();
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restaurants" element={<Restaurants />} />
+          <Route path="/restaurants/:id" element={<RestaurantDetail />} />
         </Routes>
       </main>
 
