@@ -24,6 +24,20 @@ const RestaurantDetail = () => {
         fetchDetails();
     }, [id]);
 
+    const handleAddToCart = async (itemId) => {
+        try {
+            await api.post('/cart/items', {
+            restaurantId: id, // The restaurant ID from the URL
+            itemId: itemId,   // The specific menu item
+            quantity: 1
+            });
+            alert('Item added to cart!');
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.message || 'Failed to add to cart. Are you logged in?');
+        }
+    };
+
     if (loading) return <div className="text-center mt-10">Loading...</div>;
     if (!restaurant) return <div className="text-center mt-10 text-red-500">Restaurant not found</div>
 
@@ -49,7 +63,8 @@ const RestaurantDetail = () => {
                                 <p className="text-gray-600 text-sm">{item.description}</p>
                                 <p className="font-semibold mt-1">₹{item.price}</p>
                             </div>
-                            <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                            <button onClick={() => handleAddToCart(item._id)}
+                            style={{ backgroundColor: '#f97316', color: 'white', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}>
                                 Add to Cart
                             </button>
                         </div>
