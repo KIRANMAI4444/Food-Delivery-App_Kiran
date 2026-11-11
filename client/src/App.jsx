@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import { useAuth } from './context/AuthContext';
 import Restaurants from './pages/Restaurants';
 import RestaurantDetail from './pages/RestaurantDetail';
+import Cart from './pages/Cart';
 
 function App() {
   const { user, logout } = useAuth();
@@ -17,6 +18,7 @@ function App() {
         <div className="ml-auto flex gap-4 items-center">
           <Link to="/" className="text-gray-700 hover:text-orange-500">Home</Link>
           <Link to="/restaurants" className="text-gray-700 hover:text-orange-500">Restaurants</Link>
+          <Link to="/cart" className="text-gray-700 hover:text-orange-500">Cart</Link>
           {user ? (
             <>
               <span className="text-gray-800 font-medium">Hi, {user.name}</span>
@@ -43,6 +45,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/restaurants/:id" element={<RestaurantDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
