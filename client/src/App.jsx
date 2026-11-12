@@ -6,6 +6,7 @@ import Restaurants from './pages/Restaurants';
 import RestaurantDetail from './pages/RestaurantDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const { user, logout } = useAuth();
@@ -46,8 +47,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/restaurants/:id" element={<RestaurantDetail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         </Routes>
       </main>
 
