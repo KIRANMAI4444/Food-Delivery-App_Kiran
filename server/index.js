@@ -7,6 +7,9 @@ import restaurantRoutes from './routes/restaurant.routes.js';
 import menuRoutes from './routes/menu.routes.js';
 import cartRoutes from './routes/cart.routes.js';
 import orderRoutes from './routes/order.routes.js';
+import http from 'http';
+import { initSocket } from './sockets/socket.js';
+
 
 
 dotenv.config();
@@ -47,7 +50,14 @@ app.get('/api/health', (req, res) => {
 
 //Start server
 const PORT = process.env.PORT || 5000;
+// ===== UPDATED START SERVER SECTION =====
+const server = http.createServer(app);
+
+// Initialize Socket.io
+initSocket(server);
 
 connectDb().then(() => {
-    app.listen(PORT, () => console.log(`--Server on port : ${PORT}`));
+    //app.listen(PORT, () => console.log(`--Server on port : ${PORT}`));
+    // Change app.listen to server.listen
+    server.listen(PORT, () => console.log(`--Server on port : ${PORT}`));
 });
